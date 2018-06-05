@@ -18,29 +18,22 @@ module ParallelAppium
 
   # Connecting to iOS devices
   class IOS
-    def self.detect_simulators
-      n = ENV['THREADS'].to_i
-      puts "N: #{n}"
-      `instruments -s devices`.split("\n").reverse[0, n] # Reverse to use latest devices first
-    end
+    @simulators = `instruments -s devices`.split("\n").reverse
 
     def self.simulator_information
       re = /\([0-9]+\.[0-9]\) \[[0-9A-Z-]+\]/m
 
       # Filter out simulator info for iPhone platform version and udid
-      simulators = detect_simulators
-      simulators.select { |simulator_data| simulator_data.include?('iPhone') && !simulator_data.include?('Apple Watch') }
-          .map { |simulator_data| simulator_data.scan(re)[0].tr('()[]', '').split }
+      @simulators.select { |simulator_data| simulator_data.include?('iPhone') && !simulator_data.include?('Apple Watch') }
+                 .map { |simulator_data| simulator_data.scan(re)[0].tr('()[]', '').split }[0, ENV['THREADS'].to_i]
     end
 
     def self.devices
       devices = []
-      simulators = detect_simulators
       simulator_information.each_with_index do |data, i|
-        devices.push(name: simulators[i][0, simulators[i].index('(') - 1], platform: 'ios', os: data[0], udid: data[1],
+        devices.push(name: @simulators[i][0, @simulators[i].index('(') - 1], platform: 'ios', os: data[0], udid: data[1],
                      wdaPort: 8100 + i + ENV['THREADS'].to_i, thread: i + 1)
       end
-
       ENV['DEVICES'] = JSON.generate(devices)
       devices
     end
