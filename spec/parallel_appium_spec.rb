@@ -3,7 +3,20 @@ RSpec.describe ParallelAppium do
     expect(ParallelAppium::VERSION).not_to be nil
   end
 
+  it 'successfully execute emulator command' do
+    ENV['THREADS'] = '1'
+    expect(ParallelAppium::Android.start_emulators.size).to equal 1
+    ENV['THREADS'] = nil
+  end
+
+  it 'start correct number of Android emulators' do
+    ENV['THREADS'] = '2'
+    expect(ParallelAppium::Android.devices.size).to equal 2
+    ENV['THREADS'] = nil
+  end
+
   it 'get\'s default number of iOS devices' do
+    ENV['THREADS'] = nil
     expect(ParallelAppium::SeleniumGrid.get_devices('ios').size).to equal 1
   end
 

@@ -39,9 +39,11 @@ Gem::Specification.new do |spec|
   spec.executables   = spec.files.grep(%r{^exe/}) { |f| File.basename(f) }
   spec.require_paths = ['lib']
 
+  spec.add_development_dependency 'appium_lib', '~> 9.14.1'
   spec.add_development_dependency 'bundler', '~> 1.16'
   spec.add_development_dependency 'json', '~> 1.8'
   spec.add_development_dependency 'parallel', '~> 1.12.1'
+  spec.add_development_dependency 'parallel_tests', '~> 2.21.3'
   spec.add_development_dependency 'rake', '~> 10.0'
   spec.add_development_dependency 'rspec', '~> 3.0'
 end
