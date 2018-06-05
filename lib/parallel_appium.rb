@@ -131,8 +131,8 @@ module ParallelAppium
       puts 'Getting Device data'
       devices = get_devices(platform)[0]
       if devices.nil?
-        puts 'No physical iOS Device, proceeding to open simulator with Appium'
-        udid = 'emulator' # Default to start iOS simulator, should not reach this for Android
+        puts "No devices for #{platform}, Exiting..."
+        exit
       else
         udid = devices[:udid]
         save_device_data [devices]
