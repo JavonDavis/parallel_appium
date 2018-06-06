@@ -9,7 +9,7 @@ RSpec.describe ParallelAppium do
     ENV['THREADS'] = nil
   end
 
-  it 'start correct number of Android emulators' do
+  it 'starts correct number of Android emulators' do
     ENV['THREADS'] = '2'
     expect(ParallelAppium::Android.new.devices.size).to equal 2
     ENV['THREADS'] = nil
