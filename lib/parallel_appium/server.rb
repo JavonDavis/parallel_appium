@@ -1,6 +1,41 @@
 module ParallelAppium
   # Setting up the selenium grid server
-  class SeleniumGrid
+  class Server
+    # Sets the current thread number environment variable(TEST_ENV_NUMBER)
+    def thread
+      (ENV['TEST_ENV_NUMBER'].nil? || ENV['TEST_ENV_NUMBER'].empty? ? 1 : ENV['TEST_ENV_NUMBER']).to_i
+    end
+
+    # Get the device data from the DEVICES environment variable
+    def device_data
+      JSON.parse(ENV['DEVICES']).find { |t| t['thread'].eql? thread } unless ENV['DEVICES'].nil?
+    end
+
+    # Save device specifications to output directory
+    def save_device_data(dev_array)
+      dev_array.each do |device|
+        device_hash = {}
+        device.each do |key, value|
+          device_hash[key] = value
+        end
+
+        # Delete and create output folder
+        `rm -rf output`
+        `mkdir output`
+
+        device.each do |k, v|
+          open("output/specs-#{device_hash[:udid]}.log", 'a') do |file|
+            file << "#{k}: #{v}\n"
+          end
+        end
+      end
+    end
+
+    # Set UDID and name environment variable
+    def set_udid_environment_variable
+      ENV['UDID'] = device_data['udid'] unless device_data.nil?
+      ENV['name'] = device_data['name'] unless device_data.nil? # Unique on ios but could be repeated on android
+    end
 
     # Get the device information for the respective platform
     def get_devices(platform)

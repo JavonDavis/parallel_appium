@@ -55,12 +55,12 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  appium_lib (~> 9.14.1)
+  appium_lib (~> 9.14)
   bundler (~> 1.16)
   json (~> 1.8)
-  parallel (~> 1.12.1)
+  parallel (~> 1.12)
   parallel_appium!
-  parallel_tests (~> 2.21.3)
+  parallel_tests (~> 2.21)
   rake (~> 10.0)
   rspec (~> 3.0)
 
