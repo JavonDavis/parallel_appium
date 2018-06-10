@@ -73,6 +73,11 @@ module ParallelAppium
       Signal.trap('INT') do
         Process.kill('INT', ios_pid) unless ios_pid.nil?
         Process.kill('INT', android_pid) unless android_pid.nil?
+
+        # Kill any existing Appium and Selenium processes
+        kill_process 'appium'
+        kill_process 'selenium'
+
         # Terminate ourself
         exit 1
       end
@@ -117,11 +122,20 @@ module ParallelAppium
     end
 
     # Fire necessary appium server instances and Selenium grid server if needed.
-    def start(file_path = nil, completion = nil)
+    def start(**args)
 
-      # Kill any existing Appium and Selenium processes
-      kill_process 'appium'
-      kill_process 'selenium'
+      platform = args[:platform]
+      file_path = args[:file_path]
+      completion = args[:completion]
+
+      # Validate environment variable
+      if ENV['platform'].nil?
+        if platform.nil?
+          puts 'No platform detected in environment and none passed to start...'
+          exit
+        end
+        ENV['platform'] = platform
+      end
 
       sleep 3
 
@@ -192,6 +206,10 @@ module ParallelAppium
         [ios_pid, android_pid].each { |process_pid| Process.waitpid(process_pid) }
       end
       completion unless completion.nil? # Execute a completion handler
+
+      # Kill any existing Appium and Selenium processes
+      kill_process 'appium'
+      kill_process 'selenium'
     end
   end
 end

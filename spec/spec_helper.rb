@@ -13,7 +13,8 @@ RSpec.configure do |config|
   end
 
   config.before :all do
+    parallel_appium = ParallelAppium::ParallelAppium.new
     puts "Initializing Appium for #{ENV['platform']}"
-    initialize_appium ENV['platform']
+    parallel_appium.initialize_appium platform: ENV['platform']
   end
 end

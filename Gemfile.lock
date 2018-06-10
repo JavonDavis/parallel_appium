@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    parallel_appium (0.0.2)
+    parallel_appium (0.1.0)
 
 GEM
   remote: https://rubygems.org/

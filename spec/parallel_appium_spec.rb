@@ -1,5 +1,5 @@
 RSpec.describe ParallelAppium do
-  it 'has a version number' do
+  it 'has a version number', ios: true, android: true do
     expect(ParallelAppium::VERSION).not_to be nil
   end
 
