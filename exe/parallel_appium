@@ -1,0 +1,4 @@
+#!/usr/bin/env ruby
+
+require 'parallel_appium'
+ParallelAppium::ParallelAppium.new.start platform:ARGV[0]

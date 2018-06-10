@@ -1,5 +1,5 @@
 RSpec.describe ParallelAppium do
-  it 'has a version number' do
+  it 'has a version number', ios: true, android: true do
     expect(ParallelAppium::VERSION).not_to be nil
   end
 
@@ -17,12 +17,12 @@ RSpec.describe ParallelAppium do
 
   it 'get\'s default number of iOS devices' do
     ENV['THREADS'] = nil
-    expect(ParallelAppium::SeleniumGrid.new.get_devices('ios').size).to equal 1
+    expect(ParallelAppium::Server.new.get_devices('ios').size).to equal 1
   end
 
   it 'get\'s specified number of possible iOS devices' do
     ENV['THREADS'] = '3'
-    expect(ParallelAppium::SeleniumGrid.new.get_devices('ios').size).to equal 3
+    expect(ParallelAppium::Server.new.get_devices('ios').size).to equal 3
     ENV['THREADS'] = nil
   end
 end

@@ -13,7 +13,7 @@ module ParallelAppium
 
       # Filter out simulator info for iPhone platform version and udid
       @simulators.select { |simulator_data| simulator_data.include?('iPhone') && !simulator_data.include?('Apple Watch') }
-          .map { |simulator_data| simulator_data.scan(re)[0].tr('()[]', '').split }[0, ENV['THREADS'].to_i]
+                 .map { |simulator_data| simulator_data.scan(re)[0].tr('()[]', '').split }[0, ENV['THREADS'].to_i]
     end
 
     # Devices after cleanup and supplemental data included

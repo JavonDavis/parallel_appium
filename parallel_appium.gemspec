@@ -19,7 +19,7 @@ Gem::Specification.new do |spec|
   spec.summary       = summary
   spec.description   = description
   spec.homepage      = 'https://github.com/JavonDavis/Parallel_Appium'
-  spec.license       = 'GPLv3'
+  spec.license       = 'GPL-3.0'
 
   # Prevent pushing this gem to RubyGems.org. To allow pushes either set the 'allowed_push_host'
   # to allow pushing to a single host or delete this section to allow pushing to any host.
@@ -42,11 +42,11 @@ Gem::Specification.new do |spec|
   spec.cert_chain  = ['certs/javondavis.pem']
   spec.signing_key = File.expand_path('~/.ssh/gem-private_key.pem') if $PROGRAM_NAME =~ /gem\z/
 
-  spec.add_development_dependency 'appium_lib', '~> 9.14.1'
+  spec.add_development_dependency 'appium_lib', '~> 9.14'
   spec.add_development_dependency 'bundler', '~> 1.16'
   spec.add_development_dependency 'json', '~> 1.8'
-  spec.add_development_dependency 'parallel', '~> 1.12.1'
-  spec.add_development_dependency 'parallel_tests', '~> 2.21.3'
+  spec.add_development_dependency 'parallel', '~> 1.12'
+  spec.add_development_dependency 'parallel_tests', '~> 2.21'
   spec.add_development_dependency 'rake', '~> 10.0'
   spec.add_development_dependency 'rspec', '~> 3.0'
 end

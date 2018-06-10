@@ -11,4 +11,10 @@ RSpec.configure do |config|
   config.expect_with :rspec do |c|
     c.syntax = :expect
   end
+
+  config.before :all do
+    parallel_appium = ParallelAppium::ParallelAppium.new
+    puts "Initializing Appium for #{ENV['platform']}"
+    parallel_appium.initialize_appium platform: ENV['platform']
+  end
 end
