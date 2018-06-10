@@ -1,4 +1,4 @@
-# ParallelAppium
+# parallel_appium
 
 Distributed mobile testing in Appium
 

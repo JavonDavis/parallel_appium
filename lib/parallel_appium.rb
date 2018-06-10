@@ -66,6 +66,7 @@ module ParallelAppium
       @driver.start_driver
       Appium.promote_appium_methods Object
       Appium.promote_appium_methods RSpec::Core::ExampleGroup
+      @driver
     end
 
     # Define a signal handler for SIGINT
@@ -83,7 +84,11 @@ module ParallelAppium
       end
     end
 
-    # Decide where to execute specs in parallel or not
+    # Decide whether to execute specs in parallel or not
+    # @param [String] platform
+    # @param [int] threads
+    # @param [String] spec_path
+    # @param [boolean] parallel
     def execute_specs(platform, threads, spec_path, parallel = false)
       command = if parallel
                   "platform=#{platform} parallel_rspec -n #{threads} #{spec_path}  > output/#{platform}.log"
@@ -126,7 +131,6 @@ module ParallelAppium
 
       platform = args[:platform]
       file_path = args[:file_path]
-      completion = args[:completion]
 
       # Validate environment variable
       if ENV['platform'].nil?
@@ -205,7 +209,6 @@ module ParallelAppium
         setup_signal_handler(ios_pid, android_pid)
         [ios_pid, android_pid].each { |process_pid| Process.waitpid(process_pid) }
       end
-      completion unless completion.nil? # Execute a completion handler
 
       # Kill any existing Appium and Selenium processes
       kill_process 'appium'
