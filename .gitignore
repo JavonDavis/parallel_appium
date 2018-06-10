@@ -84,7 +84,7 @@ build-iPhoneSimulator/
 x64/
 x86/
 bld/
-[Bb]in/
+#[Bb]in/ # Excluding bin folder from ignore
 [Oo]bj/
 [Ll]og/
 
