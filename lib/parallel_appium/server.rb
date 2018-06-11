@@ -88,7 +88,7 @@ module ParallelAppium
 
     # Start the Selenium grid server as a hub
     def start_hub
-      spawn("java -jar selenium-server-standalone-3.12.0.jar -role hub -newSessionWaitTimeout 250000 -log #{Dir.pwd}/output/hub.log &", out: '/dev/null')
+      spawn("java -jar #{File.dirname(__FILE__)}/selenium-server-standalone-3.12.0.jar -role hub -newSessionWaitTimeout 250000 -log #{Dir.pwd}/output/hub.log &", out: '/dev/null')
       sleep 3 # wait for hub to start...
       spawn('open -a safari http://127.0.0.1:4444/grid/console')
     end
