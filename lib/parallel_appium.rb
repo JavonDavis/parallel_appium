@@ -61,9 +61,11 @@ module ParallelAppium
         puts 'No capabilities specified'
         exit
       end
+      puts 'Preparing to load capabilities'
       capabilities = load_capabilities(caps)
+      puts 'Loaded capabilities'
       @driver = Appium::Driver.new(capabilities, true)
-      @driver.start_driver
+      puts 'Created driver'
       Appium.promote_appium_methods Object
       Appium.promote_appium_methods RSpec::Core::ExampleGroup
       @driver
