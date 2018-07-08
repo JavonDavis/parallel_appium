@@ -1,6 +1,6 @@
 # parallel_appium
 
-Distributed mobile testing in Appium
+Distributed mobile testing in Appium and RSpec
 
 ## Installation
 
@@ -18,9 +18,9 @@ Or install it yourself as:
 
     $ gem install parallel_appium
 
-## Usage
+## Getting started and ssage
 
-To use the gem properly there's 3 lines of code you'll need to know to include within your project.
+To get started with this gem there's 3 lines of code you'll need to know to include within your project.
 These lines handle the following.
 
 ### Starting the servers
@@ -52,7 +52,7 @@ from that location.
 
 ### Setting UDID for the test
 
-When distributing tests across multiple devices the library spreads the tests across multiple threads and depends on the
+When distributing tests across multiple devices the library spreads the specs across multiple threads and depends on the
 UDID environment variable to know which device it's working with for the specific test file, as such this will need to 
 be setup in each test file, simply include the following line of code at the top of the test file after any dependencies 
 and the library will set this up as needed,
@@ -61,6 +61,13 @@ and the library will set this up as needed,
 
 This is all you need to get started with this library. There's a number of environment variables set by the library
 for the purpose of writing easier cross platform tests. These are described in more detail below.
+
+### Environment variables
+
+
+### Tags
+
+
 
 ## Development
 
