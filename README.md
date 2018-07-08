@@ -6,13 +6,13 @@ Distributed mobile testing in Appium
 
 Add this line to your application's Gemfile:
 
-```ruby
+```
 gem 'parallel_appium'
 ```
 
 And then execute:
 
-    $ bundle
+    $ bundle install
 
 Or install it yourself as:
 
@@ -20,7 +20,47 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+To use the gem properly there's 3 lines of code you'll need to know to include within your project.
+These lines handle the following.
+
+### Starting the servers
+
+The library at the moment doesn't offer the ability to connect to existing appium processes and instead 
+starts appium servers and the selenium grid server as needed. The following line of code is what you'll need to include
+for the library to handle this,
+
+```ParallelAppium::ParallelAppium.new.start platform: platform, file_path: file_path```
+
+where platform is either android, ios or all and file_path is the absolute path to the folder or spec file 
+to be executed. 
+
+### Initializing the appium instance(s)
+
+As expected each appium instance will need to be loaded with capabilities defining all kinds of important things 
+about how the tests executing on that instance will work, hence this will need to be done before the tests begin
+it's best to put this in some form of 'before all' block that will execute it prior to all the tests executing.
+
+The following line of code is an example of what you'll need to use
+
+```ParallelAppium::ParallelAppium.new.initialize_appium platform: ENV['platform']```
+
+The initialize_appium function can take two parameters
+
+1. platform - If provided it will look for a appium-{platform}.txt file in the root of the project and load capabilities
+from that location.
+2. caps - The capabilities as a map to be loaded. 
+
+### Setting UDID for the test
+
+When distributing tests across multiple devices the library spreads the tests across multiple threads and depends on the
+UDID environment variable to know which device it's working with for the specific test file, as such this will need to 
+be setup in each test file, simply include the following line of code at the top of the test file after any dependencies 
+and the library will set this up as needed,
+
+```ParallelAppium::Server.new.set_udid_environment_variable```
+
+This is all you need to get started with this library. There's a number of environment variables set by the library
+for the purpose of writing easier cross platform tests. These are described in more detail below.
 
 ## Development
 

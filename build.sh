@@ -1,0 +1,1 @@
+gem build parallel_appium.gemspec
