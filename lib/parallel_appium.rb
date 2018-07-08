@@ -93,9 +93,9 @@ module ParallelAppium
     # @param [boolean] parallel
     def execute_specs(platform, threads, spec_path, parallel = false)
       command = if parallel
-                  "platform=#{platform} parallel_rspec -n #{threads} #{spec_path}  > output/#{platform}.log"
+                  "platform=#{platform} parallel_rspec -n #{threads} #{spec_path}  --out output/#{platform}.log"
                 else
-                  "platform=#{platform} rspec #{spec_path} --tag #{platform} > output/#{platform}.log"
+                  "platform=#{platform} rspec #{spec_path} --tag #{platform} --out output/#{platform}.log"
                 end
 
       puts "Executing #{command}"
