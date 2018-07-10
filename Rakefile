@@ -9,7 +9,7 @@ task default: :spec
 # TODO: Move into functions
 desc 'Validate Android'
 task :validate_android do
-  %x(emulator 2>&1)
+  %x(which emulator 2>&1)
   if $? == 0
     puts "emulator command configured properly"
   else
@@ -19,7 +19,7 @@ end
 
 desc 'Validate iOS'
 task :validate_ios do
-  %x(instruments 2>&1)
+  %x(which instruments 2>&1)
   if $? == 0
     puts "instruments command configured properly"
   else
