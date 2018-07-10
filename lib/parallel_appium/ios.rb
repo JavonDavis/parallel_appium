@@ -14,7 +14,7 @@ module ParallelAppium
       puts "Simulators"
 
       puts @simulators.select { |simulator_data| simulator_data.include?('iPhone') && !simulator_data.include?('Apple Watch') }
-               .map { |simulator_data| simulator_data.scan(re)}
+               .map { |simulator_data| simulator_data.scan(re)[0]}
 
       # Filter out simulator info for iPhone platform version and udid
       @simulators.select { |simulator_data| simulator_data.include?('iPhone') && !simulator_data.include?('Apple Watch') }
