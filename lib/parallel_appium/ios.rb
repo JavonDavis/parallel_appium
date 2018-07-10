@@ -11,6 +11,10 @@ module ParallelAppium
     def simulator_information
       re = /\([0-9]+\.[0-9](\.[0-9])?\) \[[0-9A-Z-]+\]/m
 
+      puts "Simulators"
+
+      puts @simulators.select { |simulator_data| simulator_data.include?('iPhone') && !simulator_data.include?('Apple Watch') }
+
       # Filter out simulator info for iPhone platform version and udid
       @simulators.select { |simulator_data| simulator_data.include?('iPhone') && !simulator_data.include?('Apple Watch') }
                  .map { |simulator_data| simulator_data.scan(re)[0].tr('()[]', '').split }[0, ENV['THREADS'].to_i]
