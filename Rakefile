@@ -5,6 +5,7 @@ RSpec::Core::RakeTask.new(:spec)
 
 task default: :spec
 
+# TODO: Move checks into gem
 namespace :parallel_appium do
   desc 'Validate Android'
   task :validate_android do
