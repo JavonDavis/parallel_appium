@@ -1,6 +1,18 @@
 # parallel_appium
 
-Distributed mobile testing in Appium and RSpec
+Single and Distributed Parallel mobile testing in Appium and RSpec fro Android and iOS
+
+## Quick check
+
+If you'd like to check if you're good to go for this project simply execute
+
+```rake parallel_appium:validate_android``` for Android
+
+```rake parallel_appium:validate_ios``` for iOS
+
+
+The messages will indicate if there's any component necessary for the platform that's still not set up as yet.
+
 
 ## Installation
 

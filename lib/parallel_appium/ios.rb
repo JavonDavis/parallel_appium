@@ -9,11 +9,11 @@ module ParallelAppium
 
     # Filter simulator data
     def simulator_information
-      re = /\([0-9]+\.[0-9]\) \[[0-9A-Z-]+\]/m
+      re = /\([0-9]+\.[0-9](\.[0-9])?\) \[[0-9A-Z-]+\]/m
 
       # Filter out simulator info for iPhone platform version and udid
       @simulators.select { |simulator_data| simulator_data.include?('iPhone') && !simulator_data.include?('Apple Watch') }
-                 .map { |simulator_data| simulator_data.scan(re)[0].tr('()[]', '').split }[0, ENV['THREADS'].to_i]
+                 .map { |simulator_data| simulator_data.match(re).to_s.tr('()[]', '').split }[0, ENV['THREADS'].to_i]
     end
 
     # Devices after cleanup and supplemental data included
@@ -28,3 +28,4 @@ module ParallelAppium
     end
   end
 end
+
