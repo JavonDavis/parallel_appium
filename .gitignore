@@ -455,3 +455,5 @@ hsd-report
 tmp/
 
 .vscode/
+
+*.sh
