@@ -32,11 +32,6 @@ module ParallelAppium
         caps[:caps][:wdaLocalPort] = device.fetch('wdaPort', nil)
       end
 
-      caps[:caps][:sessionOverride] = true
-      caps[:caps][:useNewWDA] = true
-      # TODO: Optionally set these capabilities below
-      caps[:caps][:noReset] = true
-      caps[:caps][:fullReset] = false
       caps[:appium_lib][:server_url] = ENV['SERVER_URL']
       caps
     end
