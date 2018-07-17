@@ -457,3 +457,9 @@ tmp/
 .vscode/
 
 *.sh
+
+apps
+
+*.apk
+*.app
+*.zip
