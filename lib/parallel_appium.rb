@@ -32,11 +32,6 @@ module ParallelAppium
         caps[:caps][:wdaLocalPort] = device.fetch('wdaPort', nil)
       end
 
-      caps[:caps][:sessionOverride] = true
-      caps[:caps][:useNewWDA] = true
-      # TODO: Optionally set these capabilities below
-      caps[:caps][:noReset] = true
-      caps[:caps][:fullReset] = false
       caps[:appium_lib][:server_url] = ENV['SERVER_URL']
       caps
     end
@@ -61,9 +56,11 @@ module ParallelAppium
         puts 'No capabilities specified'
         exit
       end
+      puts 'Preparing to load capabilities'
       capabilities = load_capabilities(caps)
+      puts 'Loaded capabilities'
       @driver = Appium::Driver.new(capabilities, true)
-      @driver.start_driver
+      puts 'Created driver'
       Appium.promote_appium_methods Object
       Appium.promote_appium_methods RSpec::Core::ExampleGroup
       @driver
@@ -91,9 +88,9 @@ module ParallelAppium
     # @param [boolean] parallel
     def execute_specs(platform, threads, spec_path, parallel = false)
       command = if parallel
-                  "platform=#{platform} parallel_rspec -n #{threads} #{spec_path}  > output/#{platform}.log"
+                  "platform=#{platform} parallel_rspec -n #{threads} #{spec_path}"
                 else
-                  "platform=#{platform} rspec #{spec_path} --tag #{platform} > output/#{platform}.log"
+                  "platform=#{platform} rspec #{spec_path} --tag #{platform}"
                 end
 
       puts "Executing #{command}"

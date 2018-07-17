@@ -3,11 +3,11 @@ lib = File.expand_path('lib', __dir__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 require 'parallel_appium/version'
 
-summary = 'Start multi-threaded appium servers'
+summary = 'Multi-threaded mobile testing with Appium, Selenium and Rspec'
 description = 'Through the creation of multiple environments
  this library allows for the distribution of multiple tests across 1 or more
 devices or simulators. The library uses Selenium Grid and Appium to launch a
-specified number of web driver and appium instances to spread the test load
+specified number of web driver and appium instances to distribute the RSpec test load
 across available devices'
 
 Gem::Specification.new do |spec|
