@@ -6,7 +6,7 @@ module ParallelAppium
       emulators = `emulator -list-avds`.split("\n")
       emulators = emulators[0, ENV['THREADS'].to_i]
       Parallel.map(emulators, in_threads: emulators.size) do |emulator|
-        spawn("emulator -avd #{emulator} -scale 100dpi -no-boot-anim -no-audio -accel on &", out: '/dev/null')
+        spawn("emulator -avd #{emulator} -no-snapshot-load -scale 100dpi -no-boot-anim -no-audio -accel on &", out: '/dev/null')
       end
     end
 
@@ -22,6 +22,7 @@ module ParallelAppium
     end
 
     # Devices after cleanup and supplemental data included
+    # TODO: store avd name
     def devices
       start_emulators
       sleep 10
