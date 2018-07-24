@@ -30,6 +30,7 @@ module ParallelAppium
         caps[:caps][:platformVersion] = device.fetch('os', caps[:caps][:platformVersion])
         caps[:caps][:deviceName] = device.fetch('name', caps[:caps][:deviceName])
         caps[:caps][:wdaLocalPort] = device.fetch('wdaPort', nil)
+        caps[:caps][:avd] = device.fetch('avd', nil)
       end
 
       caps[:appium_lib][:server_url] = ENV['SERVER_URL']
