@@ -28,7 +28,7 @@ GEM
     parallel (1.12.1)
     parallel_tests (2.21.3)
       parallel
-    rake (10.5.0)
+    rake (13.0.1)
     rspec (3.7.0)
       rspec-core (~> 3.7.0)
       rspec-expectations (~> 3.7.0)
@@ -61,7 +61,7 @@ DEPENDENCIES
   parallel (~> 1.12)
   parallel_appium!
   parallel_tests (~> 2.21)
-  rake (~> 10.0)
+  rake (~> 13.0)
   rspec (~> 3.0)
 
 BUNDLED WITH

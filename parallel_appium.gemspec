@@ -47,6 +47,6 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency 'json', '~> 1.8'
   spec.add_development_dependency 'parallel', '~> 1.12'
   spec.add_development_dependency 'parallel_tests', '~> 2.21'
-  spec.add_development_dependency 'rake', '~> 10.0'
+  spec.add_development_dependency 'rake', '~> 13.0'
   spec.add_development_dependency 'rspec', '~> 3.0'
 end
