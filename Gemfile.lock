@@ -21,7 +21,7 @@ GEM
       eventmachine (>= 0.12.0)
       websocket-driver (>= 0.5.1)
     ffi (1.9.25)
-    json (1.8.6)
+    json (2.3.1)
     mini_portile2 (2.3.0)
     nokogiri (1.8.2)
       mini_portile2 (~> 2.3.0)
@@ -57,7 +57,7 @@ PLATFORMS
 DEPENDENCIES
   appium_lib (~> 9.14)
   bundler (~> 1.16)
-  json (~> 1.8)
+  json (~> 2.3)
   parallel (~> 1.12)
   parallel_appium!
   parallel_tests (~> 2.21)
