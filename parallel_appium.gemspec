@@ -44,7 +44,7 @@ Gem::Specification.new do |spec|
 
   spec.add_development_dependency 'appium_lib', '~> 9.14'
   spec.add_development_dependency 'bundler', '~> 1.16'
-  spec.add_development_dependency 'json', '~> 1.8'
+  spec.add_development_dependency 'json', '~> 2.3'
   spec.add_development_dependency 'parallel', '~> 1.12'
   spec.add_development_dependency 'parallel_tests', '~> 2.21'
   spec.add_development_dependency 'rake', '~> 10.0'
